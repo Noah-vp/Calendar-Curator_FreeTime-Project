@@ -1,0 +1,124 @@
+/* Flash message styling */
+.flash-message {
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+}
+
+/* Make ALL event-related elements show pointer cursor */
+.fc-event .fc-event-main {
+    cursor: pointer !important;
+}
+
+/* Event hover effect */
+.fc-event .fc-event-main:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the event container allows hover effects */
+.fc-event .fc-event-main {
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    z-index: 1;
+}
+
+.fc-event .fc-event-main:hover {
+    z-index: 2;
+}
+
+.event-current {
+    background-color: #3b82f6 !important;
+    border-color: #2563eb !important;
+    color: white !important;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3b82f6 !important;
+    z-index: 5 !important;
+}
+
+.event-current .fc-event-title,
+.event-current .fc-event-time {
+    color: white !important;
+}
+
+.event-attending {
+    background-color: #10b981 !important;
+    border-color: #059669 !important;
+}
+
+.event-skipped {
+    background-color: #ef4444 !important;
+    border-color: #dc2626 !important;
+}
+
+/* Event selection interface */
+.event-selection {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-selection h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.event-title {
+    font-weight: 500;
+    color: #111827;
+}
+
+.event-location {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.event-time {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.event-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.attend-btn, .skip-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.attend-btn {
+    background-color: #10b981;
+    color: white;
+    border: none;
+}
+
+.attend-btn:hover {
+    background-color: #059669;
+}
+
+.skip-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+}
+
+.skip-btn:hover {
+    background-color: #dc2626;
+} 

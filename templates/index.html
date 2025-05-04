@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}View Schedule - Optional Schedule{% endblock %}
+
+{% block extra_css %}
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+<link href="{{ url_for('static', filename='css/calendar.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header with back button -->
+        <div class="flex justify-between items-center mb-8">
+            <a href="{{ url_for('dashboard') }}" class="text-gray-600 hover:text-gray-900">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Event Selection Interface -->
+        <div id="eventSelection" class="bg-white rounded-lg p-4 mb-4 shadow" style="display: none;">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Event Details</h3>
+            <div class="space-y-2">
+                <p id="eventTitle" class="text-gray-800"></p>
+                <p id="eventLocation" class="text-gray-600"></p>
+                <p id="eventTime" class="text-gray-600"></p>
+            </div>
+            <div class="mt-4 flex space-x-4">
+                <button onclick="handleAttend()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                    <i class="fas fa-check mr-2"></i>Attend
+                </button>
+                <button onclick="handleSkip()" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                    <i class="fas fa-times mr-2"></i>Skip
+                </button>
+            </div>
+        </div>
+
+        <!-- Export Options Interface -->
+        <div id="exportSelection" class="bg-white rounded-lg p-4 mb-4 shadow" style="display: none;">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Export Calendar</h3>
+            <div class="space-y-2">
+                <p class="text-gray-600">All events for this week have been decided! Would you like to export your schedule? You can export your schedule as an iCal file or sync it to your Google Calendar (coming soon).</p>
+            </div>
+            <div class="mt-4 flex space-x-4">
+                <button onclick="handleExportIcal()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    <i class="fas fa-download mr-2"></i>Export as iCal
+                </button>
+                <button onclick="handleGoogleSync()" class="px-4 py-2 bg-gray-300 text-gray-600 rounded cursor-not-allowed" disabled>
+                    <i class="fab fa-google mr-2"></i>Sync to Google Calendar
+                </button>
+            </div>
+        </div>
+
+        <!-- Calendar -->
+        <div id="calendar" class="bg-white shadow rounded-lg p-6"></div>
+    </div>
+</div>
+
+<!-- Include FullCalendar library -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+<script>
+    // Make events and schedule_id available to the calendar.js file
+    window.calendarEvents = {{ events|safe }};
+    window.scheduleId = '{{ schedule_id }}';
+</script>
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %} 
